@@ -1,6 +1,7 @@
 #include <utility>
 #include <memory>
 #include <vector>
+#include <iostream>
 
 template <typename C, typename... Ts>
 C MkCnt(Ts&&... vs) {
@@ -14,8 +15,10 @@ C MkCnt(Ts&&... vs) {
   return c;
 }
 
-using OutC = std::vector<std::unique_ptr<int>>;
-
-void test() {
-  MkCnt<OutC>(new int{4}, new int{5}, new int{6});
+int main(int argc, char **argv) {
+  using OutC = std::vector<std::unique_ptr<int>>;
+  auto v = MkCnt<OutC>(new int{4}, std::unique_ptr<int>(new int{5}), new int{6});
+  for (const auto& e : v) {
+    std::cout << *e << "\n";
+  }
 }
