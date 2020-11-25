@@ -1,99 +1,136 @@
 
-struct CatchState {
-    void next() {
-        if (pos == 0)
-            throw;
-        probes[--pos](*this);
+#include <functional>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <typeinfo>
+
+// 
+
+
+class CatchState {
+public:
+    using Probe = std::function<std::string(CatchState&)>;
+
+    explicit CatchState(std::vector<Probe> probes)
+        : _probes(std::move(probes)) {}
+
+    std::string doCatch() {
+        _pos = _probes.size();
+        return _nextProbe();
     }
 
     template <typename T, typename F>
-    void typedProbe(F&& f) {
+    std::string typedProbe(F&& desc) {
         try {
-            next();
+            return _nextProbe();
         } catch (const T& ex) {
-            f(ex);
+            return desc(ex);
         }
     }
 
-    const std::vector<std::function<void(CatchState&)>> probes;
-    const std::exception_ptr ep;
-    const std::type_info*& ti;
-    std::ostream& os;
-    size_t pos;
+private:
+    std::string _nextProbe() {
+        if (!_pos) throw;
+        return _probes[--_pos](*this);
+    }
+
+    std::vector<Probe> _probes;
+    size_t _pos;
 };
 
-void addExceptionInfoProbe(std::function<void(CatchState&)> probe);
+decltype(auto) _exceptionInfoProbes() {
+    static auto& v = *new std::vector<CatchState::Probe>{};
+    return v;
+}
 
-void addExceptionInfoProbe(std::function<void(CatchState&)> probe) {
+void addExceptionInfoProbe(CatchState::Probe probe) {
     _exceptionInfoProbes().push_back(probe);
 }
 
-void probeException() {
-    mallocFreeOStream << "terminate() called.";
-    auto ep = std::current_exception();
-    if (!ep) {
-        mallocFreeOStream << " No exception is active";
-        return;
-    }
-    mallocFreeOStream << " An exception is active; attempting to gather more information";
-    writeMallocFreeStreamToLog();
+//  Frontmatter for the test....
 
-    const std::type_info* typeInfo = nullptr;
+namespace boost {
+struct exception{};
+std::string diagnostic_information(exception) { return "boost::exception"; }
+}
+struct DBException {};
+std::string redact(const DBException&) { return "redacted DBException"; };
+std::string redact(std::string) { return "redacted string"; };
 
-    std::vector<std::function<void(CatchState&)>> probes{
-        [](CatchState& state) {
-            state.typedProbe<DBException>([&](auto&& ex) {
-                state.ti = &typeid(ex);
-                state.os << "DBException::toString(): " << redact(ex) << '\n';
+void initProbes() {
+    addExceptionInfoProbe([](CatchState& state) {
+            return state.typedProbe<DBException>([](auto&& ex) {
+                    std::ostringstream os;
+                    os << "DBException::toString(): " << redact(ex) << '\n';
+                    return os.str();
+                    });
             });
-        },
-        [](CatchState& state) {
-            state.typedProbe<std::exception>([&](auto&& ex) {
-                state.ti = &typeid(ex);
-                state.os << "std::exception::what(): " << redact(ex.what()) << '\n';
+    addExceptionInfoProbe([](CatchState& state) {
+            return state.typedProbe<std::exception>([](auto&& ex) {
+                    std::ostringstream os;
+                    os << "std::exception::what(): " << redact(ex.what()) << '\n';
+                    return os.str();
+                    });
             });
-        },
-        [](CatchState& state) {
-            state.typedProbe<boost::exception>([&](auto&& ex) {
-                state.ti = &typeid(ex);
-                state.os << "boost::diagnostic_information(): "
-                            << boost::diagnostic_information(ex) << '\n';
+    addExceptionInfoProbe([](CatchState& state) {
+            return state.typedProbe<boost::exception>([](auto&& ex) {
+                    std::ostringstream os;
+                    os << "boost::diagnostic_information(): "
+                       << boost::diagnostic_information(ex) << '\n';
+                    return os.str();
+                    });
             });
-        },
-    };
-    probes.insert(probes.end(), _exceptionInfoProbes().begin(), _exceptionInfoProbes().end());
+}
 
-    try {
-        CatchState{probes, ep, typeInfo, mallocFreeOStream, probes.size()}.next();
-    } catch(...) {}
-
-    try {
+std::ostream& probeException(std::ostream& os) {
+    if (!std::current_exception()) {
+        os << "No active exception";
+    } else {
         try {
-            throw;
-        } catch (const DBException& ex) {
-            typeInfo = &typeid(ex);
-            mallocFreeOStream << "DBException::toString(): " << redact(ex) << '\n';
-        } catch (const std::exception& ex) {
-            typeInfo = &typeid(ex);
-            mallocFreeOStream << "std::exception::what(): " << redact(ex.what()) << '\n';
-        } catch (const boost::exception& ex) {
-            typeInfo = &typeid(ex);
-            mallocFreeOStream << "boost::diagnostic_information(): "
-                              << boost::diagnostic_information(ex) << '\n';
+            os << CatchState{_exceptionInfoProbes()}.doCatch();
         } catch (...) {
-            mallocFreeOStream << "A non-standard exception type was thrown\n";
-        }
-
-        if (typeInfo) {
-            const std::string name = demangleName(*typeInfo);
-            mallocFreeOStream << "Actual exception type: " << name << '\n';
-        }
-    } catch (...) {
-        mallocFreeOStream << "Exception while trying to print current exception.\n";
-        if (typeInfo) {
-            // It is possible that we failed during demangling. At least try to print the
-            // mangled name.
-            mallocFreeOStream << "Actual exception type: " << typeInfo->name() << '\n';
+            os << "Exception while trying to print current exception" << std::endl;;
         }
     }
+    return os;
+}
+
+struct WeirdException {};
+static auto dum1 = (addExceptionInfoProbe([](CatchState& state) {
+        return state.typedProbe<WeirdException>([](auto&& ex) {
+            return "WeirdException";
+        });
+    }), 0);
+
+struct SpecificStdException : std::exception {};
+static auto dum2 = (addExceptionInfoProbe([](CatchState& state) {
+        return state.typedProbe<SpecificStdException>([](auto&& ex) {
+            return "SpecificStdException";
+        });
+    }), 0);
+
+
+template <typename T>
+std::ostream& testProbe(std::ostream& os, T&& obj) {
+    try {
+        throw obj;
+    } catch (...) {
+        return os << probeException << std::endl;
+    }
+}
+
+int main() {
+    initProbes();
+    try {
+        std::ostream& os = std::cout;
+        testProbe(os, DBException{});
+        testProbe(os, WeirdException{});
+        testProbe(os, std::out_of_range{"testing"});
+        testProbe(os, SpecificStdException{});
+    } catch(...) {
+        std::cout << "uncaught\n";
+    }
+    return 0;
 }
