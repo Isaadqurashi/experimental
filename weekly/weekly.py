@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 
+import sys
 import datetime
 from reportlab.lib import colors
 from reportlab.lib import pagesizes
 from reportlab.pdfgen.canvas import Canvas
 
-canvas = Canvas("hello.pdf", pagesize=pagesizes.LETTER)
+y = int(sys.argv[1])
+
+canvas = Canvas(f"weekly_planner_{y}.pdf", pagesize=pagesizes.LETTER)
 
 ppi = 72
-
-y = 2021
 
 d0 = datetime.date(y, 1, 1)
 
