@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 2017.02 610.68"
+   version="1.1"
+   sodipodi:docname="planner-c.svg"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)">
+  <metadata
+     id="metadata5721">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2000"
+     inkscape:window-height="1000"
+     id="namedview5719"
+     showgrid="false"
+     inkscape:zoom="1.7639156"
+     inkscape:cx="539.82684"
+     inkscape:cy="293.51582"
+     inkscape:window-x="28"
+     inkscape:window-y="28"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs5454">
+    <style
+       id="style5442">
+        .cls-1,
+        .cls-23,
+        .cls-4{fill:none;}
+        .cls-2{fill:#b2b1b1;}
+        .cls-3{font-size:12.87px;}
+        .cls-3,
+        .cls-5{font-family:Futura-Medium, Futura;}
+        .cls-4{stroke:#b7b7b7;}
+        .cls-23,
+        .cls-4{stroke-miterlimit:10;}
+        .cls-5{font-size:10px;}
+        .cls-6{letter-spacing:-0.04em;}
+        .cls-7{letter-spacing:-0.07em;}
+        .cls-8{letter-spacing:-0.01em;}
+        .cls-9{letter-spacing:-0.04em;}
+        .cls-15{font-size:18.38px;}
+        .cls-16,
+        .cls-17{font-size:11.03px;}
+        .cls-16{letter-spacing:0em;}
+        .cls-18{letter-spacing:-0.04em;}
+        .cls-19{letter-spacing:-0.07em;}
+        .cls-20{letter-spacing:-0.01em;}
+        .cls-21{letter-spacing:-0.04em;}
+        .cls-22{letter-spacing:-0.06em;}
+        .cls-23{stroke:#fff;}
+        .cls-24{fill:url(#dotGridPattern);}
+    </style>
+    <pattern
+       id="dotGridPattern"
+       data-name="dotGridPattern"
+       x="1.06"
+       y="0.67"
+       width="19.33"
+       height="19.33"
+       patternUnits="userSpaceOnUse"
+       viewBox="0 0 19.33 19.33">
+      <rect
+         class="cls-1"
+         width="19.33"
+         height="19.33"
+         id="rect5444" />
+      <circle
+         class="cls-2"
+         cx="9.67"
+         cy="9.67"
+         r="0.67"
+         id="circle5446" />
+    </pattern>
+  </defs>
+  <title id="title5456">planner-c</title>
+  <text class="cls-3" transform="translate(32.9 52.11)" id="text5458">WEEK OF</text>
+  <line class="cls-4" x1="0.52" y1="63.55" x2="397.15" y2="63.55" id="line5460" />
+  <text class="cls-5" transform="translate(32.9 78.26)" id="text5462">MONDAY</text>
+  <line class="cls-4" x1="0.44" y1="138.66" x2="397.15" y2="138.66" id="line5464" />
+  <text class="cls-5" transform="translate(32.9 153.37)" id="text5466">TUESDAY</text>
+  <line class="cls-4" x1="1.21" y1="213.78" x2="397.15" y2="213.78" id="line5468" />
+  <text class="cls-5" transform="translate(32.9 228.49)" id="text5470">WEDNESDAY</text>
+  <line class="cls-4" x1="1.21" y1="288.89" x2="397.15" y2="288.89" id="line5472" />
+  <text class="cls-5" transform="translate(32.9 303.6)" id="text5474">THURSDAY</text>
+  <line class="cls-4" x1="1.21" y1="364.01" x2="397.15" y2="364.01" id="line5476" />
+  <text class="cls-5" transform="translate(32.9 378.72)" id="text5478">FRIDAY</text>
+  <line class="cls-4" x1="0.77" y1="439.12" x2="397.15" y2="439.12" id="line5480" />
+  <text class="cls-5" transform="translate(32.9 453.83)" id="text5494">SATURDAY</text>
+  <line class="cls-4" x1="1.19" y1="514.24" x2="397.15" y2="514.24" id="line5496" />
+  <text class="cls-5" id="text5504" x="32.900002" y="528.95001">SUNDAY</text>
+  <text class="cls-3" transform="translate(1652.78 52.11) scale(0.94 1)" id="text5522">JANUARY 2021</text>
+  <line class="cls-4" x1="1620.4" y1="63.55" x2="2017.02" y2="63.55" id="line5524" />
+  <text class="cls-15" transform="translate(1653.25 83.81)" id="text5528">4</text>
+  <text class="cls-17" transform="translate(1671.63 78.26)" id="text5536">MONDAY</text>
+  <line class="cls-4" x1="1620.31" y1="145.3" x2="2017.02" y2="145.3" id="line5538" />
+  <text class="cls-15" transform="translate(1653.25 165.56)" id="text5540">5</text>
+  <text class="cls-17" transform="translate(1671.63 160.01)" id="text5548">TUESDAY</text>
+  <line class="cls-4" x1="1621.09" y1="227.05" x2="2017.02" y2="227.05" id="line5550" />
+  <text class="cls-15" transform="translate(1653.25 247.31)" id="text5554">6</text>
+  <text class="cls-17" transform="translate(1671.63 241.76)" id="text5562">WEDNESDAY</text>
+  <line class="cls-4" x1="1621.09" y1="308.8" x2="2017.02" y2="308.8" id="line5564" />
+  <text class="cls-15" transform="translate(1653.25 329.06)" id="text5566">7</text>
+  <text class="cls-17" transform="translate(1671.63 323.51)" id="text5574">THURSDAY</text>
+  <line class="cls-4" x1="1619.88" y1="390.55" x2="2017.02" y2="390.55" id="line5576" />
+  <text class="cls-15" transform="translate(1653.25 410.81)" id="text5580">8</text>
+  <text class="cls-17" transform="translate(1671.63 405.25)" id="text5588">FRIDAY</text>
+  <line class="cls-4" x1="1620.64" y1="472.3" x2="2017.02" y2="472.3" id="line5590" />
+  <text
+     class="cls-15"
+     transform="translate(1653.25 492.56)"
+     id="text5594">9<tspan
+   class="cls-16"
+   x="11.34"
+   y="0"
+   id="tspan5592" /></text>
+  <text
+     class="cls-17"
+     transform="translate(1671.63 487.01)"
+     id="text5608"><tspan
+       class="cls-20"
+       id="tspan5596">S</tspan><tspan
+       class="cls-21"
+       x="6.34"
+       y="0"
+       id="tspan5598">A</tspan><tspan
+       x="14.05"
+       y="0"
+       id="tspan5600">TUR</tspan><tspan
+       class="cls-18"
+       x="34.15"
+       y="0"
+       id="tspan5602">D</tspan><tspan
+       class="cls-19"
+       x="41.75"
+       y="0"
+       id="tspan5604">A</tspan><tspan
+       x="49.19"
+       y="0"
+       id="tspan5606">Y</tspan></text>
+  <line
+     class="cls-4"
+     x1="1621.07"
+     y1="554.05"
+     x2="2017.02"
+     y2="554.05"
+     id="line5610" />
+  <text
+     class="cls-15"
+     transform="translate(1653.25 574.31)"
+     id="text5618"><tspan
+       class="cls-22"
+       id="tspan5612">1</tspan><tspan
+       x="10.24"
+       y="0"
+       id="tspan5614">0</tspan><tspan
+       class="cls-16"
+       x="21.58"
+       y="0"
+       id="tspan5616" /></text>
+  <text
+     class="cls-17"
+     transform="translate(1680.82 568.75)"
+     id="text5626">SUN<tspan
+   class="cls-18"
+   x="23.89"
+   y="0"
+   id="tspan5620">D</tspan><tspan
+   class="cls-19"
+   x="31.48"
+   y="0"
+   id="tspan5622">A</tspan><tspan
+   x="38.92"
+   y="0"
+   id="tspan5624">Y</tspan></text>
+  <circle
+     class="cls-23"
+     cx="492.82"
+     cy="79.61"
+     r="0.97"
+     id="circle5628" />
+  <circle
+     class="cls-2"
+     cx="461.06"
+     cy="42"
+     r="0.67"
+     id="circle5630" />
+  <rect
+     class="cls-24"
+     x="397.06"
+     width="392.84"
+     height="610.68"
+     id="dotgrid1" />
+  <text class="cls-3" transform="translate(842.89 52.11)" id="text5634">WEEK OF </text>
+  <line class="cls-4" x1="810.5" y1="63.55" x2="1207.13" y2="63.55" id="line5636" />
+  <text class="cls-5" transform="translate(842.89 78.26)" id="text5644">MONDAY</text>
+  <line class="cls-4" x1="810.42" y1="138.66" x2="1207.13" y2="138.66" id="line5646" />
+  <text class="cls-5" transform="translate(842.89 153.37)" id="text5654">TUESDAY</text>
+  <line class="cls-4" x1="811.19" y1="213.78" x2="1207.13" y2="213.78" id="line5656" />
+  <text class="cls-5" transform="translate(842.89 228.49)" id="text5664">WEDNESDAY</text>
+  <line class="cls-4" x1="811.19" y1="288.89" x2="1207.13" y2="288.89" id="line5666" />
+  <text class="cls-5" transform="translate(842.89 303.6)" id="text5674">THURSDAY</text>
+  <line class="cls-4" x1="809.98" y1="364.01" x2="1207.13" y2="364.01" id="line5676" />
+  <text class="cls-5" transform="translate(842.89 378.72)" id="text5684">FRIDAY</text>
+  <line class="cls-4" x1="810.75" y1="439.12" x2="1207.13" y2="439.12" id="line5686" />
+  <text class="cls-5" transform="translate(842.89 453.83)" id="text5700">SATURDAY</text>
+  <line class="cls-4" x1="811.18" y1="514.24" x2="1207.13" y2="514.24" id="line5702" />
+  <text class="cls-5" transform="translate(842.89 528.95)" id="text5710">SUNDAY</text>
+
+  <rect
+     class="cls-24"
+     x="1207.04"
+     width="392.84"
+     height="610.68"
+     id="rect5716" />
+</svg>
