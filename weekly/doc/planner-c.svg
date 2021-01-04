@@ -130,91 +130,12 @@
   <text class="cls-15" transform="translate(1653.25 410.81)" id="text5580">8</text>
   <text class="cls-17" transform="translate(1671.63 405.25)" id="text5588">FRIDAY</text>
   <line class="cls-4" x1="1620.64" y1="472.3" x2="2017.02" y2="472.3" id="line5590" />
-  <text
-     class="cls-15"
-     transform="translate(1653.25 492.56)"
-     id="text5594">9<tspan
-   class="cls-16"
-   x="11.34"
-   y="0"
-   id="tspan5592" /></text>
-  <text
-     class="cls-17"
-     transform="translate(1671.63 487.01)"
-     id="text5608"><tspan
-       class="cls-20"
-       id="tspan5596">S</tspan><tspan
-       class="cls-21"
-       x="6.34"
-       y="0"
-       id="tspan5598">A</tspan><tspan
-       x="14.05"
-       y="0"
-       id="tspan5600">TUR</tspan><tspan
-       class="cls-18"
-       x="34.15"
-       y="0"
-       id="tspan5602">D</tspan><tspan
-       class="cls-19"
-       x="41.75"
-       y="0"
-       id="tspan5604">A</tspan><tspan
-       x="49.19"
-       y="0"
-       id="tspan5606">Y</tspan></text>
-  <line
-     class="cls-4"
-     x1="1621.07"
-     y1="554.05"
-     x2="2017.02"
-     y2="554.05"
-     id="line5610" />
-  <text
-     class="cls-15"
-     transform="translate(1653.25 574.31)"
-     id="text5618"><tspan
-       class="cls-22"
-       id="tspan5612">1</tspan><tspan
-       x="10.24"
-       y="0"
-       id="tspan5614">0</tspan><tspan
-       class="cls-16"
-       x="21.58"
-       y="0"
-       id="tspan5616" /></text>
-  <text
-     class="cls-17"
-     transform="translate(1680.82 568.75)"
-     id="text5626">SUN<tspan
-   class="cls-18"
-   x="23.89"
-   y="0"
-   id="tspan5620">D</tspan><tspan
-   class="cls-19"
-   x="31.48"
-   y="0"
-   id="tspan5622">A</tspan><tspan
-   x="38.92"
-   y="0"
-   id="tspan5624">Y</tspan></text>
-  <circle
-     class="cls-23"
-     cx="492.82"
-     cy="79.61"
-     r="0.97"
-     id="circle5628" />
-  <circle
-     class="cls-2"
-     cx="461.06"
-     cy="42"
-     r="0.67"
-     id="circle5630" />
-  <rect
-     class="cls-24"
-     x="397.06"
-     width="392.84"
-     height="610.68"
-     id="dotgrid1" />
+  <text class="cls-15" transform="translate(1653.25 492.56)" id="text5594">9</text>
+  <text class="cls-17" transform="translate(1671.63 487.01)" id="text5608">SATURDAY</text>
+  <line class="cls-4" x1="1621.07" y1="554.05" x2="2017.02" y2="554.05" id="line5610" />
+  <text class="cls-15" transform="translate(1653.25 574.31)" id="text5618">10</text>
+  <text class="cls-17" transform="translate(1680.82 568.75)" id="text5626">SUNDAY</text>
+  <rect class="cls-24" x="397.06" width="392.84" height="610.68" id="dotgrid1" />
   <text class="cls-3" transform="translate(842.89 52.11)" id="text5634">WEEK OF </text>
   <line class="cls-4" x1="810.5" y1="63.55" x2="1207.13" y2="63.55" id="line5636" />
   <text class="cls-5" transform="translate(842.89 78.26)" id="text5644">MONDAY</text>
@@ -230,11 +151,5 @@
   <text class="cls-5" transform="translate(842.89 453.83)" id="text5700">SATURDAY</text>
   <line class="cls-4" x1="811.18" y1="514.24" x2="1207.13" y2="514.24" id="line5702" />
   <text class="cls-5" transform="translate(842.89 528.95)" id="text5710">SUNDAY</text>
-
-  <rect
-     class="cls-24"
-     x="1207.04"
-     width="392.84"
-     height="610.68"
-     id="rect5716" />
+  <rect class="cls-24" x="1207.04" width="392.84" height="610.68" id="dotgrid2" />
 </svg>
