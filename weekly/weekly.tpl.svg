@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 792 612"
+   version="1.1"
+   sodipodi:docname="planner-c.svg"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)">
+  <metadata
+     id="metadata9372">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2000"
+     inkscape:window-height="1000"
+     showgrid="false"
+     inkscape:zoom="1.9600548"
+     inkscape:cx="388.0751"
+     inkscape:cy="141.84527"
+     inkscape:window-x="2442"
+     inkscape:window-y="168"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Layer_1"
+     id="namedview9374"
+     inkscape:document-rotation="0" />
+  <defs
+     id="defs9381">
+    <style
+       id="style9376">
+        .hline{fill:none;}
+        .dotGridCircle{fill:#bbb;}
+        .hline{stroke:#bbb;}
+        .hline{stroke-miterlimit:10;}
+        .month{font-family:Futura-Medium, Futura; font-size:9pt;}
+        .dow{font-family:Futura-Medium, Futura; font-size:8pt; alignment-baseline:hanging;}
+        .dom{font-size:14pt; alignment-baseline:hanging; text-anchor:end;}
+        .dotty{fill:url(#dotGridPattern);}
+        .tfi{font-size:4pt;}
+    </style>
+    <pattern
+       id="dotGridPattern"
+       data-name="dotGridPattern"
+       x="0"
+       y="0"
+       width="18"
+       height="18"
+       patternUnits="userSpaceOnUse"
+       viewBox="0 0 18 18">
+      <circle class="dotGridCircle" cx="0.5" cy="0.5" r="0.5" />
+    </pattern>
+  </defs>
+  <title id="title9383">JMD Weekly Planner</title>
+
+#from Cheetah.Template import Template
+#import datetime
+#extends Template
+
+#set $months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
+#set $dows = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY']
+#set $days = ['4', '5', '6', '7', '8', '9', '10']
+#set $dilist = range(len($days))
+#set $y = 2021
+#set $m = 0
+
+  <text class="month" transform="translate(20 52)" id="text9387">$months[$m] $y</text>
+#for $di in $dilist
+#set $y = 64 + 72 * $di
+#set $yt = $y + 7
+  <line class="hline" x1="1" y1="$y" x2="396" y2="$y"/>
+  <text class="dow" transform="translate(36 $yt)">$dows[$di]</text>
+  <text class="dom" transform="translate(30 $yt)">$days[$di]</text>
+#end for
+  <rect class="dotty" x="396" y="0" width="396" height="612" id="dotgrid1" />
+</svg>

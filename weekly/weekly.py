@@ -8,7 +8,7 @@ from reportlab.pdfgen.canvas import Canvas
 
 y = int(sys.argv[1])
 
-canvas = Canvas(f"weekly_planner_{y}.pdf", pagesize=pagesizes.LETTER)
+canvas = Canvas(f'weekly_planner_{y}.pdf', pagesize=pagesizes.LETTER)
 
 ppi = 72
 
@@ -16,7 +16,7 @@ d0 = datetime.date(y, 1, 1)
 
 dow0 = d0.weekday()
 
-face = "Helvetica"
+face = 'Helvetica'
 
 for w in range(0, 52 + 1):
     x = ppi
@@ -56,4 +56,3 @@ for w in range(0, 52 + 1):
     canvas.showPage()
 
 canvas.save()
-

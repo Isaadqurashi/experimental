@@ -80,122 +80,27 @@
   </defs>
   <title
      id="title9383">JMD Weekly Planner</title>
-  <text
-     class="week_of"
-     transform="translate(32.9,52.11)"
-     id="text9387">JANUARY <tspan
-   class="tfi"
-   id="tspan9385">thank Christ it's</tspan> 2021</text>
-  <line
-     class="hline"
-     x1="1"
-     y1=" 64.55"
-     x2="396"
-     y2=" 63.55"
-     id="line9389" />
-  <text
-     class="dow"
-     transform="translate(33 78)"
-     id="text9391">MONDAY</text>
-  <text
-     class="dom"
-     transform="translate(30 78)"
-     id="text9393">4</text>
-  <line
-     class="hline"
-     x1="1"
-     y1="138.66"
-     x2="396"
-     y2="139"
-     id="line9395" />
-  <text
-     class="dow"
-     transform="translate(33 153)"
-     id="text9397">TUESDAY</text>
-  <text
-     class="dom"
-     transform="translate(30 153)"
-     id="text9399">5</text>
-  <line
-     class="hline"
-     x1="1"
-     y1="213.78"
-     x2="396"
-     y2="213.78"
-     id="line9401" />
-  <text
-     class="dow"
-     transform="translate(33 228)"
-     id="text9403">WEDNESDAY</text>
-  <text
-     class="dom"
-     transform="translate(30 228)"
-     id="text9405">6</text>
-  <line
-     class="hline"
-     x1="1"
-     y1="288.89"
-     x2="396"
-     y2="288.89"
-     id="line9407" />
-  <text
-     class="dow"
-     transform="translate(33 304)"
-     id="text9409">THURSDAY</text>
-  <text
-     class="dom"
-     transform="translate(30 304)"
-     id="text9411">7</text>
-  <line
-     class="hline"
-     x1="1"
-     y1="364.01"
-     x2="396"
-     y2="364.01"
-     id="line9413" />
-  <text
-     class="dow"
-     transform="translate(33 379)"
-     id="text9415">FRIDAY</text>
-  <text
-     class="dom"
-     transform="translate(30 379)"
-     id="text9417">8</text>
-  <line
-     class="hline"
-     x1="1"
-     y1="439.12"
-     x2="396"
-     y2="439.12"
-     id="line9419" />
-  <text
-     class="dow"
-     transform="translate(33 454)"
-     id="text9421">SATURDAY</text>
-  <text
-     class="dom"
-     transform="translate(30 454)"
-     id="text9423">9</text>
-  <line
-     class="hline"
-     x1="1"
-     y1="514.24"
-     x2="396"
-     y2="514.24"
-     id="line9425" />
-  <text
-     class="dow"
-     transform="translate(33 529)"
-     id="text9427">SUNDAY</text>
-  <text
-     class="dom"
-     transform="translate(30 529)"
-     id="text9429">10</text>
-  <rect
-     class="dotty"
-     x="396"
-     y="0"
-     width="396"
-     height="612"
-     id="dotgrid1" />
+  <text class="week_of" transform="translate(32.9,52.11)" id="text9387">JANUARY <tspan class="tfi" id="tspan9385">thank Christ it's</tspan> 2021</text>
+  <line class="hline" x1="1" y1=" 64.55" x2="396" y2=" 63.55" id="line9389" />
+  <text class="dow" transform="translate(33 78)" id="text9391">MONDAY</text>
+  <text class="dom" transform="translate(30 78)" id="text9393">4</text>
+  <line class="hline" x1="1" y1="138.66" x2="396" y2="139" id="line9395" />
+  <text class="dow" transform="translate(33 153)" id="text9397">TUESDAY</text>
+  <text class="dom" transform="translate(30 153)" id="text9399">5</text>
+  <line class="hline" x1="1" y1="213.78" x2="396" y2="213.78" id="line9401" />
+  <text class="dow" transform="translate(33 228)" id="text9403">WEDNESDAY</text>
+  <text class="dom" transform="translate(30 228)" id="text9405">6</text>
+  <line class="hline" x1="1" y1="288.89" x2="396" y2="288.89" id="line9407" />
+  <text class="dow" transform="translate(33 304)" id="text9409">THURSDAY</text>
+  <text class="dom" transform="translate(30 304)" id="text9411">7</text>
+  <line class="hline" x1="1" y1="364.01" x2="396" y2="364.01" id="line9413" />
+  <text class="dow" transform="translate(33 379)" id="text9415">FRIDAY</text>
+  <text class="dom" transform="translate(30 379)" id="text9417">8</text>
+  <line class="hline" x1="1" y1="439.12" x2="396" y2="439.12" id="line9419" />
+  <text class="dow" transform="translate(33 454)" id="text9421">SATURDAY</text>
+  <text class="dom" transform="translate(30 454)" id="text9423">9</text>
+  <line class="hline" x1="1" y1="514.24" x2="396" y2="514.24" id="line9425" />
+  <text class="dow" transform="translate(33 529)" id="text9427">SUNDAY</text>
+  <text class="dom" transform="translate(30 529)" id="text9429">10</text>
+  <rect class="dotty" x="396" y="0" width="396" height="612" id="dotgrid1" />
 </svg>
