@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import datetime
+import json
 import sys
 
 _months = [
@@ -45,11 +46,11 @@ def generate(year):
         for _ in _days:
             week.append(
                 {
-                    "dow": _days[d.weekday()],
-                    "year": d.year,
-                    "month": _months[d.month - 1],
-                    "day": d.day,
-                    "doy": doy,
+                    "y": d.year,
+                    "m": _months[d.month - 1],
+                    "d": d.day,
+                    "w": _days[d.weekday()],
+                    "j": doy,
                 }
             )
             d = d + datetime.timedelta(days=1)
@@ -57,18 +58,10 @@ def generate(year):
         weeks.append(week)
     return weeks
 
-def main():
-    year = int(sys.argv[1])
-    weeks = generate(year)
-    for w in weeks:
-        for d in w:
-            _carp(f'['\
-f'{d["month"]:9}|'\
-f'{d["day"]:2}|'\
-f'{d["dow"]:9}'\
-']')
-        _carp('')
-
 if __name__ == "__main__":
-    # execute only if run as a script
-    main()
+    year = datetime.datetime.today().year
+    if len(sys.argv) > 1:
+        year = int(sys.argv[1])
+    print(f'# Calendar for {year}:')
+    weeks = generate(year)
+    print(f'{json.dumps(weeks, indent=2)}')
