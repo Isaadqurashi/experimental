@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-#set $dowFontSize = 8
-#set $domFontSize = 14
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -51,15 +49,8 @@
      id="defs9381">
     <style
        id="style9376">
-        .hline{fill:none;}
         .dotGridCircle{fill:#bbb;}
-        .hline{stroke:#bbb;}
-        .hline{stroke-miterlimit:10;}
-        .month{font-family:Futura-Medium, Futura; font-size:9pt;}
-        .dow{font-family:Futura-Medium, Futura; font-size:${dowFontSize}pt; }
-        .dom{font-size:${domFontSize}pt; text-anchor:end;}
         .dotty{fill:url(#dotGridPattern);}
-        .tfi{font-size:4pt;}
     </style>
     <pattern
        id="dotGridPattern"
@@ -73,18 +64,6 @@
       <circle class="dotGridCircle" cx="0.5" cy="0.5" r="0.5" />
     </pattern>
   </defs>
-  <title id="title9383">$weekOf</title>
-
-  <text class="month" transform="translate(20 52)" id="text9387">$wHead["B"] $wHead["Y"]</text>
-#for $di,$d in enumerate($days)
-#set $y = 64 + 72 * $di
-#set $ytA = $y + 16 + $dowFontSize
-#set $ytd = $y + 16 + $domFontSize
-  <line class="hline" x1="1" y1="$y" x2="396" y2="$y"/>
-  <text class="dow" transform="translate(36 $ytA)">$d["A"]</text>
-  <text class="dom" transform="translate(30 $ytd)">$d["d"]</text>
-#end for
-<!--
-  <rect class="dotty" x="396" y="0" width="396" height="612" id="dotgrid1" />
--->
+  <title id="title9383">dot grid</title>
+  <rect class="dotty" x="0" y="0" width="396" height="612" id="dotgrid1" />
 </svg>

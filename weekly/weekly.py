@@ -1,57 +1,39 @@
 #!/usr/bin/env python3
 
+import os
 import sys
-import datetime
+import regex
+import cairosvg
+
+from Cheetah.Template import Template
 from reportlab.lib import colors
 from reportlab.lib import pagesizes
 
+import generate_weeks
+
 y = int(sys.argv[1])
 
-canvas = Canvas(f'weekly_planner_{y}.pdf', pagesize=pagesizes.LETTER)
+template = None
+with open('weekly.tpl.svg') as f:
+    template = f.read()
 
-ppi = 72
+weeks = generate_weeks.generate(y)
 
-d0 = datetime.date(y, 1, 1)
+try:
+    os.mkdir(f'year_{y:04d}')
+except FileExistsError:
+    pass
 
-dow0 = d0.weekday()
+# strftime formats:
+#   %B: MONTH
+#   %d: 31
+#   %A: DAYOFWEEK
+for wi, w in enumerate(weeks):
+    ww = w[0]
+    weekOf = f'Week of {ww["B"]} {ww["d"]}, {ww["Y"]}:'
+    t = Template(template, searchList={'wHead': ww, 'weekOf': weekOf, 'days': w})
 
-face = 'Helvetica'
-
-for w in range(0, 52 + 1):
-    x = ppi
-    y = 10 * ppi
-    canvas.setFont(face, 18)
-    canvas.setFillColor(colors.blue)
-    canvas.setStrokeColor(colors.blue)
-    canvas.drawString(x, y, f'Week {w+1}')
-
-    p = canvas.beginPath()
-    p.moveTo(x, y - .1 * ppi)
-    p.lineTo(7 * ppi, y - .1 * ppi)
-    p.close()
-    canvas.drawPath(p)
-
-    for dow in range(0, 7):
-        try:
-            d = d0 + datetime.timedelta(days=(7*w+dow - dow0))
-            dfmt = d.strftime("%a %d %b")
-            y = (10 - (9.5/7.0) * (1+dow)) * ppi
-
-            canvas.setFont(face, 12)
-            canvas.setFillColor(colors.gray)
-            canvas.drawString(x, y, '{}'.format(d.strftime('%a')))
-            canvas.setFont("Courier", 9)
-            canvas.drawString(x + .5 * ppi, y, '{}'.format(d.strftime('%d %b')))
-
-            p = canvas.beginPath()
-            p.moveTo(x, y - .1 * ppi)
-            p.lineTo(7 * ppi, y - .1 * ppi)
-            p.close()
-            canvas.setStrokeColor(colors.gray)
-            canvas.drawPath(p)
-
-        except ValueError:
-            pass
-    canvas.showPage()
-
-canvas.save()
+    svgBase = f'year_{y:04d}/week_{wi:02d}'
+    with open(f'{svgBase}.svg', 'w') as fout:
+        print(t, file=fout)
+    cairosvg.svg2pdf(url=f'{svgBase}.svg', write_to=f'{svgBase}.pdf')

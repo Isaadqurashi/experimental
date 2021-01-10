@@ -28,12 +28,9 @@ def _carp(s):
 def generate(year):
     d0 = datetime.date(year, 1, 1)
 
-    # back up until we reach a Monday
+    # back up one day at a time until we reach a Monday
     while d0.weekday() != 0:
         d0 = d0 - datetime.timedelta(days=1)
-        
-    #_carp(f'dow:{d0.weekday()}, ')
-    #d0 = d0 - datetime.timedelta(days=(6 - (d0.weekday())))
 
     # Start on Monday even if it's in the previous year.
     d = d0
