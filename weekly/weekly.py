@@ -3,37 +3,53 @@
 import os
 import sys
 import regex
+import cairo
 import cairosvg
 
 from Cheetah.Template import Template
-from reportlab.lib import colors
-from reportlab.lib import pagesizes
 
 import generate_weeks
 
-y = int(sys.argv[1])
 
-template = None
-with open('weekly.tpl.svg') as f:
-    template = f.read()
+class WeeklyPlanner:
+    def __init__(self, outDir, year):
+        self.outDir = outDir
+        self.year = year
 
-weeks = generate_weeks.generate(y)
+    def svgPdf(self, s):
+        dpi = 96
+        return cairosvg.svg2pdf(
+            bytestring=s, dpi=dpi, parent_width=dpi * 5.5, parent_height=dpi * 8.5
+        )
 
-try:
-    os.mkdir(f'year_{y:04d}')
-except FileExistsError:
-    pass
+    def makeDots(self):
+        dotsSvg = open("dots.svg").read()
+        dotsPdf = self.svgPdf(dotsSvg)
+        open(f"{self.outDir}/dots.pdf", "wb").write(dotsPdf)
 
-# strftime formats:
-#   %B: MONTH
-#   %d: 31
-#   %A: DAYOFWEEK
-for wi, w in enumerate(weeks):
-    ww = w[0]
-    weekOf = f'Week of {ww["B"]} {ww["d"]}, {ww["Y"]}:'
-    t = Template(template, searchList={'wHead': ww, 'weekOf': weekOf, 'days': w})
+    def makeWeeks(self, weeks):
+        tmpl = open("weekly.tpl.svg").read()
+        for wi, w in enumerate(weeks):
+            # strftime formats: {%B: MONTH, %d: 31, %A: DAYOFWEEK}
+            ww = w[0]
+            weekOf = f'Week of {ww["B"]} {ww["d"]}, {ww["Y"]}:'
+            t = Template(tmpl, searchList={"wHead": ww, "weekOf": weekOf, "days": w})
+            weekPdf = self.svgPdf(str(t))
+            open(f"{self.outDir}/week_{wi:02d}.pdf", "wb").write(weekPdf)
 
-    svgBase = f'year_{y:04d}/week_{wi:02d}'
-    with open(f'{svgBase}.svg', 'w') as fout:
-        print(t, file=fout)
-    cairosvg.svg2pdf(url=f'{svgBase}.svg', write_to=f'{svgBase}.pdf')
+    def generate(self):
+        try:
+            os.mkdir(self.outDir)
+        except FileExistsError:
+            pass
+        self.makeDots()
+        weeks = generate_weeks.generate(self.year)
+        self.makeWeeks(weeks)
+
+    def collate(self):
+        pass
+
+
+if __name__ == "__main__":
+    year = int(sys.argv[1])
+    WeeklyPlanner(f"year_{year:04d}", year).generate()

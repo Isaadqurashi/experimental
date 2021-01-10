@@ -55,7 +55,7 @@ def generate(year):
         weeks.append(week)
     return weeks
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     year = datetime.datetime.today().year
     if len(sys.argv) > 1:
         year = int(sys.argv[1])

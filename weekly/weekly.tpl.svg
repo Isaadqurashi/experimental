@@ -84,7 +84,4 @@
   <text class="dow" transform="translate(36 $ytA)">$d["A"]</text>
   <text class="dom" transform="translate(30 $ytd)">$d["d"]</text>
 #end for
-<!--
-  <rect class="dotty" x="396" y="0" width="396" height="612" id="dotgrid1" />
--->
 </svg>
