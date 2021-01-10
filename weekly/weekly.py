@@ -4,7 +4,6 @@ import sys
 import datetime
 from reportlab.lib import colors
 from reportlab.lib import pagesizes
-from reportlab.pdfgen.canvas import Canvas
 
 y = int(sys.argv[1])
 
