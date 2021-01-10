@@ -46,10 +46,10 @@ def generate(year):
         for _ in _days:
             week.append(
                 {
-                    "y": d.year,
-                    "m": _months[d.month - 1],
+                    "Y": d.year,
+                    "B": _months[d.month - 1],
                     "d": d.day,
-                    "w": _days[d.weekday()],
+                    "A": _days[d.weekday()],
                     "j": doy,
                 }
             )
