@@ -82,7 +82,7 @@ class WeeklyPlanner:
         for w in weeks:
             pageFiles.append(w['file'])
             pageFiles.append(self.dots)
-        pageFiles = bookletPermutation(pageFiles, fill=self.dots, fc=self.dots, bc=self.dots)
+        pageFiles = self.bookletPermutation(pageFiles, fill=self.dots, fc=self.dots, bc=self.dots)
 
         for pg, p in enumerate(pageFiles):
             pfm.merge(pg, p)
