@@ -56,33 +56,36 @@ class WeeklyPlanner:
         weeks = [{'days':w} for w in generate_weeks.generate(self.year)]
         return self.makeWeeks(weeks)
 
+
+    # Emit 4-page groups: {FR:0,BL:N-1,BR:N-2,FL:1}
+    # {01,04,03,02}
+    # {01,08,07,02},{03,06,05,04}
+    # {01,12,11,02},{03,10,09,04},{05,08,07,06}
+    def bookletPermutation(self, pages, fill, fc, bc):
+        while (len(pages) + 2) % 4 != 0:
+            pages.append(fill) # fill to get to mod 4 w/covers
+        tmp = []
+        tmp.append(fc)
+        for pi, p in enumerate(pages):
+            phase = pi % 4
+            if phase == 0 or phase == 3:
+                tmp.append(pages.pop(0)) # front
+            elif phase == 1 or phase == 2:
+                tmp.append(pages.pop()) # back
+        tmp.append(bc)
+        return tmp
+
     def collate(self, weeks):
         pfm = PyPDF2.PdfFileMerger()
 
         pageFiles = []
-        pageFiles.append(self.dots) # front cover
         for w in weeks:
             pageFiles.append(w['file'])
             pageFiles.append(self.dots)
-        pageFiles.append(self.dots) # back cover
+        pageFiles = bookletPermutation(pageFiles, fill=self.dots, fc=self.dots, bc=self.dots)
 
-        # arrange as booklet (False to depend on HP driver Booklet mode)
-        if False:
-            ei = len(pageFiles)
-            bi = 0
-            booklet = []
-            while bi != ei:
-                booklet.append(pageFiles[ei - 1])
-                ei -= 1
-                booklet.append(pageFiles[bi])
-                bi += 1
-        else:
-            booklet = pageFiles
-
-        pg = 0
-        for p in booklet:
+        for pg, p in enumerate(pageFiles):
             pfm.merge(pg, p)
-            pg = pg + 1
 
         pfm.write(f'{self.outDir}/year_{year:04d}.pdf')
 
