@@ -61,7 +61,7 @@
        height="18"
        patternUnits="userSpaceOnUse"
        viewBox="0 0 18 18">
-      <circle class="dotGridCircle" cx="0.5" cy="0.5" r="0.5" />
+      <circle class="dotGridCircle" cx="1" cy="1" r="1" />
     </pattern>
   </defs>
   <title id="title9383">dot grid</title>

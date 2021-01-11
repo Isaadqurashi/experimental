@@ -66,7 +66,7 @@ class WeeklyPlanner:
             pageFiles.append(self.dots)
         pageFiles.append(self.dots) # back cover
 
-        # arrange as booklet
+        # arrange as booklet (False to depend on HP driver Booklet mode)
         if False:
             ei = len(pageFiles)
             bi = 0
