@@ -66,12 +66,14 @@ class WeeklyPlanner:
             pages.append(fill) # fill to get to mod 4 w/covers
         tmp = []
         tmp.append(fc)
+
+        pageQueue = pages
         for pi, p in enumerate(pages):
             phase = pi % 4
             if phase == 0 or phase == 3:
-                tmp.append(pages.pop(0)) # front
+                tmp.append(pageQueue.pop(0)) # front
             elif phase == 1 or phase == 2:
-                tmp.append(pages.pop()) # back
+                tmp.append(pageQueue.pop()) # back
         tmp.append(bc)
         return tmp
 
