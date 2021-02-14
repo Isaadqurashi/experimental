@@ -23,9 +23,21 @@ template <typename S> constexpr decltype(auto) prepare(S s) {
   return prepare(s, std::make_index_sequence<sizeof(S::get()) - 1>{});
 }
 
-enum LogComponent : int {};
-constexpr inline LogComponent kDefault = LogComponent{-1};
-template <typename FileName> inline LogComponent logComponent = kDefault;
+enum LogComponent : int {
+    kDefault = -1,
+    kTest,
+};
+inline std::ostream& operator<<(std::ostream& os, LogComponent lc) {
+    switch (lc) {
+        case kDefault:
+            return os << "kDefault";
+        case kTest:
+            return os << "kTest";
+    }
+}
+
+template <typename FileName>
+inline LogComponent logComponent = LogComponent::kDefault;
 
 #define LOGV2_STRING_PACK(s)                                                   \
   ::mongo::logv2::prepare([] {                                                 \
@@ -60,7 +72,7 @@ template <typename FileName> inline LogComponent logComponent = kDefault;
   };                                                                           \
   }
 
-DEFINE_LOG_COMPONENT_FOR_FILE(54321)
+DEFINE_LOG_COMPONENT_FOR_FILE(mongo::logv2::LogComponent::kTest)
 
 inline int inlineFunc() {
   LOG("from inlineFunc");
