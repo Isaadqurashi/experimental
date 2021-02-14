@@ -12,7 +12,7 @@ namespace mongo::logv2 {
 
 /** Like boost::hana::string. */
 template <char... Cs> struct StringPack {
-  static constexpr const char storage = {Cs..., '\0'};
+  static constexpr const char storage[] = {Cs..., '\0'};
 };
 
 template <typename S, size_t... Is>
