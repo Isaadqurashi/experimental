@@ -1,6 +1,4 @@
 
 #include "logv2.h"
 
-void inOther() {
-    LOG("from " __FILE__);
-}
+void inOther() { LOG("from " __FILE__); }

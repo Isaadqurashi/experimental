@@ -54,7 +54,7 @@ template <typename FileName> inline LogComponent logComponent = kDefault;
   template <> class Registrant<__COUNTER__> {                                  \
     static inline const auto _dummy = [] {                                     \
       LOGV2_COMPONENT_FOR_FILE = ::mongo::logv2::LogComponent{value};          \
-      LOG("initialized " __FILE__); \
+      LOG("initialized " __FILE__);                                            \
       return 0;                                                                \
     }();                                                                       \
   };                                                                           \
