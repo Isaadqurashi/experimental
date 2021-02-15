@@ -26,6 +26,7 @@ template <typename S> constexpr decltype(auto) prepare(S s) {
 enum LogComponent : int {
     kDefault = -1,
     kTest,
+    kMain,
 };
 inline std::ostream& operator<<(std::ostream& os, LogComponent lc) {
     switch (lc) {
@@ -33,6 +34,10 @@ inline std::ostream& operator<<(std::ostream& os, LogComponent lc) {
             return os << "kDefault";
         case kTest:
             return os << "kTest";
+        case kMain:
+            return os << "kMain";
+        default:
+            return os << "???" << int(lc);
     }
 }
 
@@ -62,7 +67,7 @@ inline LogComponent logComponent = LogComponent::kDefault;
 
 #define DEFINE_LOG_COMPONENT_FOR_FILE(value)                                   \
   namespace {                                                                  \
-  template <int> struct Registrant;                                            \
+  template <int> class Registrant;                                            \
   template <> class Registrant<__COUNTER__> {                                  \
     static inline const auto _dummy = [] {                                     \
       LOGV2_COMPONENT_FOR_FILE = ::mongo::logv2::LogComponent{value};          \

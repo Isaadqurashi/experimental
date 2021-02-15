@@ -6,7 +6,7 @@
 
 #include "logv2.h"
 
-DEFINE_LOG_COMPONENT_FOR_FILE(12345)
+DEFINE_LOG_COMPONENT_FOR_FILE(::mongo::logv2::LogComponent::kMain)
 
 void inOther();
 
