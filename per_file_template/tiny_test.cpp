@@ -32,13 +32,24 @@ auto prepare(S s) {
         return Tmp{}; \
     }()))
 
-#define LOG_IMPL() \
-       dump(MACRO(__FILE__)) \
-       /**/
+
+/*
+ * Two LOGV2 statements in the Numeric test below showed unexplained build failures.
+ * Must be related to the nested nature of the lambdas.
+ */
+void TestBugWithStringPackEvaluation() {
+    [[maybe_unused]] auto outer = [](auto a) {
+        auto inner = [](auto b) {
+            auto str = MACRO("hi");
+            std::cout << str.c_str() << "\n";
+        };
+        inner(a);
+    };
+    outer(222);
+}
+
 
 int main() {
-    //auto s = MACRO("hello");
-    //std::cout << s << "\n";
-    LOG_IMPL();
+    TestBugWithStringPackEvaluation();
     return 0;
 }
