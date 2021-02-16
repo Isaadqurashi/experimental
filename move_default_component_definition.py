@@ -22,6 +22,7 @@ class FileState:
         self.component = None
         self.first_namespace = None
         self.last_include = None
+        self.includes_log_header = False
 
     def load(self):
         # print(f'filename="{filename}"', file=sys.stderr)
@@ -34,7 +35,7 @@ class FileState:
         """ Find last '#include' and first line of real code. """
 
         component_re = re.compile(r'^\s*#define\s+MONGO_LOGV2_DEFAULT_COMPONENT\s+(.*)\s*$')
-        include_re = re.compile(r'^\s*#include.*\s*')
+        include_re = re.compile(r'^\s*#include \s*("[^"]*"|<[^>]*>).*\s*')
         namespace_re = re.compile(r'^\s*namespace.*\s*')
         if_re = re.compile(r'^\s*#\s*(if|ifdef|ifndef).*\s*')
         endif_re = re.compile(r'^\s*#\s*endif.*\s*')
@@ -59,8 +60,14 @@ class FileState:
                 self.component = m[1]
                 line['component'] = self.component
 
-            if include_re.fullmatch(s):
-                line['inc'] = True
+            m = include_re.fullmatch(s)
+            if m:
+                line['inc'] = m[1]
+                if m[1] == '"mongo/logv2/log.h"':
+                    print(f'{self.filename} includes log header as {m[1]}', file=sys.stderr)
+                    self.includes_log_header = True
+                #if re.match(r'/log\.h', m[1]):
+                #    print('close enough include: {m[1]}', file=sys.stderr)
                 self.last_include = i
 
             if namespace_re.fullmatch(s):
@@ -82,7 +89,14 @@ class FileState:
         #    print(f'first_namespace: {self.first_namespace}')
 
     def edit(self):
-        if self.component is None:
+        can_edit = False
+        generate_log_header_inclusion = False
+        if self.component is not None:
+            can_edit = True
+            if not self.includes_log_header:
+                generate_log_header_inclusion = True
+                print(f'{self.filename}: does not include log.h, but has component="{self.component}"', file=sys.stderr)
+        if not can_edit:
             self.out_lines = self.lines
             return
         self.out_lines = list()
@@ -90,15 +104,19 @@ class FileState:
             if 'component' in line:
                 continue  # omit the old component definition
             if 'insert_point' in line:
-                self.out_lines.append({'s':''})
+                if generate_log_header_inclusion:
+                    self.out_lines.append({'s':'\n'})
+                    self.out_lines.append({'s': '#include "mongo/logv2/log.h"\n'})
+                self.out_lines.append({'s':'\n'})
                 self.out_lines.append({'s':f'LOGV2_SET_COMPONENT_FOR_FILE({self.component})\n'})
-                self.out_lines.append({'s':''})
+                self.out_lines.append({'s':'\n'})
+
             self.out_lines.append(line)
 
     def report(self):
         for i, line in enumerate(self.out_lines):
             if_level = f'[if_level={line["if_level"]}]' if 'if_level' in line else ""
-            inc = '[inc]' if 'inc' in line else ''
+            inc = f'[inc={line["inc"]}]' if 'inc' in line else ''
             ns = '[ns]' if 'ns' in line else ''
             component = f'[component=\"{line["component"]}\"]' if 'component' in line else ''
 
@@ -108,8 +126,11 @@ class FileState:
 
             print(f'{self.filename}:{i:05d}: {line["s"].rstrip():120s}:{component}{if_level}{inc}{ns}{last_include}{insert_point}')
 
-class LineState:
-    pass
+    def replace(self):
+        if self.component:
+            with open(self.filename, 'w') as f:
+                for line in self.out_lines:
+                    print(line['s'].rstrip(), file=f)
 
 def main(argv):
     if len(argv) < 2:
@@ -121,6 +142,7 @@ def main(argv):
         fileState.analyze()
         fileState.edit()
         fileState.report()
+        fileState.replace()
     return 0
 
 if __name__ == '__main__':
