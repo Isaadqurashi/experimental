@@ -1,12 +1,8 @@
 #!/usr/bin/python
 
-# Perform a quick rewrite of
+# Perform a quick rewrite to move
 #
 #    #define MONGO_LOGV2_DEFAULT_COMPONENT CCCC
-#
-# into
-#
-#    LOGV2_SET_COMPONENT_FOR_FILE(CCCC)
 #
 # further down the file after all includes.
 
@@ -64,7 +60,7 @@ class FileState:
             if m:
                 line['inc'] = m[1]
                 if m[1] == '"mongo/logv2/log.h"':
-                    print(f'{self.filename} includes log header as {m[1]}', file=sys.stderr)
+                    # print(f'{self.filename} includes log header as {m[1]}', file=sys.stderr)
                     self.includes_log_header = True
                 #if re.match(r'/log\.h', m[1]):
                 #    print('close enough include: {m[1]}', file=sys.stderr)
@@ -95,7 +91,7 @@ class FileState:
             can_edit = True
             if not self.includes_log_header:
                 generate_log_header_inclusion = True
-                print(f'{self.filename}: does not include log.h, but has component="{self.component}"', file=sys.stderr)
+                #print(f'{self.filename}: does not include log.h, but has component="{self.component}"', file=sys.stderr)
         if not can_edit:
             self.out_lines = self.lines
             return
@@ -104,16 +100,18 @@ class FileState:
             if 'component' in line:
                 continue  # omit the old component definition
             if 'insert_point' in line:
-                if generate_log_header_inclusion:
-                    self.out_lines.append({'s':'\n'})
-                    self.out_lines.append({'s': '#include "mongo/logv2/log.h"\n'})
+                #if generate_log_header_inclusion:
+                #    self.out_lines.append({'s':'\n'})
+                #    self.out_lines.append({'s': '#include "mongo/logv2/log.h"\n'})
                 self.out_lines.append({'s':'\n'})
-                self.out_lines.append({'s':f'LOGV2_SET_COMPONENT_FOR_FILE({self.component})\n'})
+                self.out_lines.append({'s':f'#define MONGO_LOGV2_DEFAULT_COMPONENT {self.component}\n'})
                 self.out_lines.append({'s':'\n'})
 
             self.out_lines.append(line)
 
     def report(self):
+        if not self.component:
+            return
         for i, line in enumerate(self.out_lines):
             if_level = f'[if_level={line["if_level"]}]' if 'if_level' in line else ""
             inc = f'[inc={line["inc"]}]' if 'inc' in line else ''
