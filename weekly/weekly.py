@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import copy
 import os
 import sys
 import regex
@@ -67,8 +68,9 @@ class WeeklyPlanner:
         tmp = []
         tmp.append(fc)
 
-        pageQueue = pages
+        pageQueue = copy.deepcopy(pages)
         for pi, p in enumerate(pages):
+            print("pi={}, p={}".format(pi, p))
             phase = pi % 4
             if phase == 0 or phase == 3:
                 tmp.append(pageQueue.pop(0)) # front
@@ -82,6 +84,7 @@ class WeeklyPlanner:
 
         pageFiles = []
         for w in weeks:
+            print("file: {}".format(w['file']))
             pageFiles.append(w['file'])
             pageFiles.append(self.dots)
         pageFiles = self.bookletPermutation(pageFiles, fill=self.dots, fc=self.dots, bc=self.dots)
