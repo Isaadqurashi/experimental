@@ -1,0 +1,5 @@
+regex
+pycairo
+cairosvg
+PyPDF2
+Cheetah3

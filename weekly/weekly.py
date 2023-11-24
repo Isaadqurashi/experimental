@@ -80,7 +80,7 @@ class WeeklyPlanner:
         return tmp
 
     def collate(self, weeks):
-        pfm = PyPDF2.PdfFileMerger()
+        pfm = PyPDF2.PdfMerger()
 
         pageFiles = []
         for w in weeks:
