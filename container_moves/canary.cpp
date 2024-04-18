@@ -1,8 +1,9 @@
 #include "canary.h"
 #include <iostream>
+using namespace std; 
 
-void chirp(std::string s) {
-    std::cerr << s << std::endl;
+void chirp(string s) {
+    cerr << s << endl;
 }
 
 Canary::Canary() { chirp("ctor"); }
@@ -16,5 +17,5 @@ static Canary instance;
 
 const Canary& case1() { return instance; }
 Canary case2() { return Canary{}; }
-Canary&& case3() { return std::move(instance); }
+Canary&& case3() { return move(instance); }
 
